@@ -106,45 +106,49 @@ export function initParticles() {
     if (!isMobile) {
       targetX = mouseX * 0.001;
       targetY = mouseY * 0.001;
-    }
 
-    // Swarm 1: Rotates one way, drifts dynamically
-    swarm1.rotation.y += 0.003; // Faster base rotation
-    swarm1.rotation.x += 0.0015;
-    swarm1.rotation.z = Math.sin(elapsedTime * 0.4) * 0.15;
-    // Increased vertical drift speed to feel more active
-    swarm1.position.y = scrollY * 0.005 + Math.sin(elapsedTime * 0.8) * 4;
-    swarm1.position.x = Math.sin(elapsedTime * 0.3) * 2;
+      // Desktop: Complex rotating and drifting swarms
+      swarm1.rotation.y += 0.003;
+      swarm1.rotation.x += 0.0015;
+      swarm1.rotation.z = Math.sin(elapsedTime * 0.4) * 0.15;
+      swarm1.position.y = scrollY * 0.005 + Math.sin(elapsedTime * 0.8) * 4;
+      swarm1.position.x = Math.sin(elapsedTime * 0.3) * 2;
 
-    // Swarm 2: Rotates opposite way, different drift
-    swarm2.rotation.y -= 0.0025;
-    swarm2.rotation.x -= 0.0015;
-    swarm2.rotation.z = Math.cos(elapsedTime * 0.3) * 0.15;
-    // Increased vertical drift speed
-    swarm2.position.y = scrollY * 0.007 + Math.cos(elapsedTime * 0.7) * 5;
-    swarm2.position.x = Math.cos(elapsedTime * 0.4) * 3;
+      swarm2.rotation.y -= 0.0025;
+      swarm2.rotation.x -= 0.0015;
+      swarm2.rotation.z = Math.cos(elapsedTime * 0.3) * 0.15;
+      swarm2.position.y = scrollY * 0.007 + Math.cos(elapsedTime * 0.7) * 5;
+      swarm2.position.x = Math.cos(elapsedTime * 0.4) * 3;
 
-    // Snappier Parallax reacting to mouse (Desktop only)
-    if (!isMobile) {
+      // Snappier Parallax reacting to mouse
       swarm1.rotation.y += 0.05 * (targetX - swarm1.rotation.y);
       swarm1.rotation.x += 0.05 * (targetY - swarm1.rotation.x);
       swarm2.rotation.y += 0.05 * (targetX - swarm2.rotation.y);
       swarm2.rotation.x += 0.05 * (targetY - swarm2.rotation.x);
+      
     } else {
-      // Much more dynamic activity for mobile to compensate for no mouse parallax
-      swarm1.rotation.y += 0.008; // Faster spinning
-      swarm1.rotation.x += 0.005;
-      swarm2.rotation.y -= 0.01;
-      swarm2.rotation.x -= 0.004;
+      // Mobile: Simple, smooth snow falling from the top
+      // Reset any stray rotations/positions
+      swarm1.rotation.set(0, Math.sin(elapsedTime * 0.3) * 0.1, 0); // Gentle horizontal sway
+      swarm2.rotation.set(0, Math.cos(elapsedTime * 0.25) * 0.1, 0);
+      swarm1.position.set(0, scrollY * 0.005, 0); // Subtle scroll parallax
+      swarm2.position.set(0, scrollY * 0.007, 0);
       
-      // Dramatic vertical breathing motion
-      swarm1.position.y += Math.sin(elapsedTime * 2.0) * 0.15;
-      swarm2.position.y -= Math.cos(elapsedTime * 1.8) * 0.2;
+      const pos1 = swarm1.geometry.attributes.position.array;
+      const pos2 = swarm2.geometry.attributes.position.array;
       
-      // Pulse scale for a shimmering effect
-      const scalePulse = 1 + Math.sin(elapsedTime * 3) * 0.05;
-      swarm1.scale.set(scalePulse, scalePulse, scalePulse);
-      swarm2.scale.set(2 - scalePulse, 2 - scalePulse, 2 - scalePulse);
+      // Manually fall particles downward
+      for (let i = 1; i < pos1.length; i += 3) {
+        pos1[i] -= 0.04; // Fall speed
+        if (pos1[i] < -60) pos1[i] = 60; // Reset to top
+      }
+      for (let i = 1; i < pos2.length; i += 3) {
+        pos2[i] -= 0.02; // Slower background fall speed
+        if (pos2[i] < -60) pos2[i] = 60;
+      }
+      
+      swarm1.geometry.attributes.position.needsUpdate = true;
+      swarm2.geometry.attributes.position.needsUpdate = true;
     }
 
     renderer.render(scene, camera);

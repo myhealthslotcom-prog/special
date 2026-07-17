@@ -12,37 +12,35 @@ introTl.from('.title-main', { y: 50, opacity: 0, duration: 1.5, ease: 'power4.ou
 .from('.luxury-corner', { opacity: 0, scale: 0.8, duration: 1, stagger: 0.2 }, "-=1")
 .from('.scroll-indicator', { opacity: 0, duration: 1 }, "-=0.5");
 
-// Mobile vs Desktop Scroll Animations
-let mm = gsap.matchMedia();
+// Universal Scroll Animations
+// Magic Garden Blooming
+gsap.from('.real-flower', { scrollTrigger: { trigger: '.magic-garden', start: 'top 80%', end: 'center center', scrub: 1 }, y: 150, opacity: 0, scale: 0.5, stagger: 0.2 });
+gsap.from('.magic-garden .section-title', { scrollTrigger: { trigger: '.magic-garden', start: 'top 90%', end: 'center center', scrub: 1 }, y: 50, opacity: 0, scale: 0.9 });
 
-// DESKTOP: Elegant, parallax-style scrub animations
-mm.add("(min-width: 769px)", () => {
-  // Magic Garden Blooming (Now targeting real-flower images instead of SVG petals)
-  gsap.from('.real-flower', { scrollTrigger: { trigger: '.magic-garden', start: 'top 80%', end: 'center center', scrub: 1 }, y: 150, opacity: 0, scale: 0.5, stagger: 0.2 });
-  gsap.from('.magic-garden .section-title', { scrollTrigger: { trigger: '.magic-garden', start: 'top center', end: 'center center', scrub: 1 }, y: 50, opacity: 0, scale: 0.9 });
-  
-  gsap.from('.cake-container', { scrollTrigger: { trigger: '.celebration-section', start: 'top 70%', end: 'center center', scrub: 1 }, y: 150, scale: 0.5, opacity: 0 });
-  gsap.from('.balloon-wrapper', { scrollTrigger: { trigger: '.celebration-section', start: 'top 70%', end: 'center center', scrub: 1 }, y: 300, opacity: 0, stagger: 0.1, rotation: () => Math.random() * 20 - 10 });
-  gsap.from('.spark-text', { scrollTrigger: { trigger: '.celebration-section', start: 'top 50%', end: 'center center', scrub: 1 }, opacity: 0, y: 50 });
-  
-  gsap.from('.gift-box', { 
-    scrollTrigger: { 
-      trigger: '.letter-section', 
-      start: 'top 65%', 
-      toggleActions: 'play none none reverse'
-    }, 
-    y: 150, 
-    scale: 0.5, 
-    opacity: 0, 
-    rotation: -10,
-    duration: 1.2,
-    ease: "elastic.out(1, 0.5)"
-  });
+// Celebration Section
+gsap.from('.cake-container', { scrollTrigger: { trigger: '.celebration-section', start: 'top 70%', end: 'center center', scrub: 1 }, y: 150, scale: 0.5, opacity: 0 });
+gsap.from('.balloon-wrapper', { scrollTrigger: { trigger: '.celebration-section', start: 'top 70%', end: 'center center', scrub: 1 }, y: 300, opacity: 0, stagger: 0.1, rotation: () => Math.random() * 20 - 10 });
+gsap.from('.spark-text', { scrollTrigger: { trigger: '.celebration-section', start: 'top 60%', end: 'center center', scrub: 1 }, opacity: 0, y: 50 });
 
-  gsap.from('.finale-title', { scrollTrigger: { trigger: '.finale-section', start: 'top 80%', end: 'center center', scrub: 1 }, scale: 0.8, opacity: 0, y: 100 });
-  gsap.from('.gold-line', { scrollTrigger: { trigger: '.finale-section', start: 'top 75%', end: 'center center', scrub: 1 }, scaleX: 0, opacity: 0 });
-  gsap.from('.finale-subtitle, .finale-sparkles', { scrollTrigger: { trigger: '.finale-section', start: 'top 70%', end: 'center center', scrub: 1 }, opacity: 0, y: 50, stagger: 0.2 });
+// Gift Box
+gsap.from('.gift-box', { 
+  scrollTrigger: { 
+    trigger: '.letter-section', 
+    start: 'top 65%', 
+    toggleActions: 'play none none reverse'
+  }, 
+  y: 150, 
+  scale: 0.5, 
+  opacity: 0, 
+  rotation: -10,
+  duration: 1.2,
+  ease: "elastic.out(1, 0.5)"
 });
+
+// Finale
+gsap.from('.finale-title', { scrollTrigger: { trigger: '.finale-section', start: 'top 80%', end: 'center center', scrub: 1 }, scale: 0.8, opacity: 0, y: 100 });
+gsap.from('.gold-line', { scrollTrigger: { trigger: '.finale-section', start: 'top 75%', end: 'center center', scrub: 1 }, scaleX: 0, opacity: 0 });
+gsap.from('.finale-subtitle, .finale-sparkles', { scrollTrigger: { trigger: '.finale-section', start: 'top 70%', end: 'center center', scrub: 1 }, opacity: 0, y: 50, stagger: 0.2 });
 
 
 // Balloons Popping Interaction with Confetti
