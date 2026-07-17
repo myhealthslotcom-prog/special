@@ -240,6 +240,78 @@ h1, h2, h3 {
   100% { transform: translateY(-15px) rotate(10deg); }
 }
 
+/* Premium CSS Flowers */
+.css-flower {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.css-flower .petal {
+  position: absolute;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  transform-origin: center bottom;
+  opacity: 0.9;
+}
+.css-flower .flower-center {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #fff, var(--color-gold));
+  border-radius: 50%;
+  top: 18px;
+  left: 18px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+/* Style 1: Rose / Pink */
+.flower-style-1 .petal {
+  width: 20px;
+  height: 35px;
+  background: linear-gradient(to top, #e6c8ce, #d88fa7);
+  border-radius: 50%;
+  top: 0px;
+  left: 15px;
+}
+.flower-style-1 .petal:nth-child(1) { transform: rotate(0deg); }
+.flower-style-1 .petal:nth-child(2) { transform: rotate(72deg); }
+.flower-style-1 .petal:nth-child(3) { transform: rotate(144deg); }
+.flower-style-1 .petal:nth-child(4) { transform: rotate(216deg); }
+.flower-style-1 .petal:nth-child(5) { transform: rotate(288deg); }
+
+/* Style 2: Lotus / Gold */
+.flower-style-2 .petal {
+  width: 14px;
+  height: 40px;
+  background: linear-gradient(to top, #fff, #f9e596);
+  border-radius: 50% 50% 0 0;
+  top: -5px;
+  left: 18px;
+}
+.flower-style-2 .petal:nth-child(1) { transform: rotate(0deg); }
+.flower-style-2 .petal:nth-child(2) { transform: rotate(45deg); }
+.flower-style-2 .petal:nth-child(3) { transform: rotate(90deg); }
+.flower-style-2 .petal:nth-child(4) { transform: rotate(135deg); }
+.flower-style-2 .petal:nth-child(5) { transform: rotate(180deg); }
+.flower-style-2 .petal:nth-child(6) { transform: rotate(225deg); }
+.flower-style-2 .petal:nth-child(7) { transform: rotate(270deg); }
+.flower-style-2 .petal:nth-child(8) { transform: rotate(315deg); }
+
+/* Style 3: Lavender / Geometric */
+.flower-style-3 .petal {
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #f3e8ff, #c4a7e7);
+  border-radius: 2px 50% 50% 50%;
+  top: 5px;
+  left: 12px;
+  transform-origin: 13px 20px;
+}
+.flower-style-3 .petal:nth-child(1) { transform: rotate(0deg); }
+.flower-style-3 .petal:nth-child(2) { transform: rotate(90deg); }
+.flower-style-3 .petal:nth-child(3) { transform: rotate(180deg); }
+.flower-style-3 .petal:nth-child(4) { transform: rotate(270deg); }
+
 /* Celebration Section */
 .celebration-section {
   flex-direction: column;
@@ -300,50 +372,21 @@ h1, h2, h3 {
   pointer-events: none;
 }
 
-.balloon-body {
-  width: 100%;
-  height: 100%;
-  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-  position: relative;
-  box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 10px 15px rgba(0,0,0,0.1);
+.svg-balloon {
+  width: 100px;
+  height: 240px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  pointer-events: none;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
 }
-.balloon[data-color="rose"] .balloon-body { background: radial-gradient(circle at 35% 25%, #ffb6c1, #d88fa7); }
-.balloon[data-color="gold"] .balloon-body { background: radial-gradient(circle at 35% 25%, #f9e596, #d4af37); }
-.balloon[data-color="blush"] .balloon-body { background: radial-gradient(circle at 35% 25%, #fff0f5, #e6c8ce); }
-.balloon[data-color="lavender"] .balloon-body { background: radial-gradient(circle at 35% 25%, #f3e8ff, #c4a7e7); }
 
-.balloon-highlight {
-  position: absolute;
-  top: 15%; left: 20%;
-  width: 15px; height: 30px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.7);
-  transform: rotate(30deg);
-  filter: blur(1px);
-}
-.balloon-knot {
-  width: 14px; height: 12px;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.balloon[data-color="rose"] .balloon-knot { background: #d88fa7; }
-.balloon[data-color="gold"] .balloon-knot { background: #d4af37; }
-.balloon[data-color="blush"] .balloon-knot { background: #e6c8ce; }
-.balloon[data-color="lavender"] .balloon-knot { background: #c4a7e7; }
-
-.balloon-string {
-  width: 1px;
-  height: 90px;
-  background: rgba(0,0,0,0.15);
-  position: absolute;
-  bottom: -96px;
-  left: 50%;
-  transform-origin: top center;
+.balloon-svg-string {
+  transform-origin: 50px 148px;
   animation: swayString 3s infinite ease-in-out alternate;
 }
+
 @keyframes swayString {
   0% { transform: rotate(-5deg); }
   100% { transform: rotate(5deg); }
@@ -616,6 +659,24 @@ h1, h2, h3 {
   font-style: italic;
   color: var(--color-rose);
   margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* SVG Heart */
+.svg-heart {
+  width: 28px;
+  height: 28px;
+  color: #e63946;
+  filter: drop-shadow(0 2px 6px rgba(230,57,70,0.4));
+  animation: heartbeat 2s infinite;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(1.15); }
+  20% { transform: scale(1.1); }
 }
 
 /* Finale */
@@ -654,6 +715,24 @@ h1, h2, h3 {
   100% { opacity: 1; transform: scale(1.1); }
 }
 
+/* SVG Sparkles */
+.svg-sparkle {
+  width: 40px;
+  height: 40px;
+  color: var(--color-gold);
+  filter: drop-shadow(0 0 8px rgba(212,175,55,0.6));
+}
+.small-sparkle {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-left: 8px;
+  display: inline-block;
+  animation: pulse 2s infinite alternate;
+}
+.delay-1 { animation-delay: 0.5s; }
+.delay-2 { animation-delay: 1s; }
+
 /* Confetti Container */
 .confetti-container {
   position: fixed;
@@ -672,105 +751,119 @@ h1, h2, h3 {
 @media (max-width: 768px) {
   .section:not(.intro-section) {
     min-height: auto;
-    padding: 2rem 1rem;
+    padding: 4rem 1.5rem;
     margin-bottom: 2rem;
   }
   .celebration-section {
     padding-top: 1rem;
-  }
-  .title-main {
-    min-height: auto;
-    padding: 5rem 1rem;
   }
   .intro-section {
     min-height: 100vh;
   }
   
   .title-main {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    line-height: 1.25;
+    margin-bottom: 1rem;
   }
+  .subtitle-main {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
   .glass-panel {
-    padding: 2rem 1rem;
-    max-width: 95%;
+    padding: 3rem 1.5rem;
+    max-width: 92%;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
   }
+  
   .luxury-corner {
-    width: 25px; height: 25px;
+    width: 20px; height: 20px;
+    border-width: 1.5px;
   }
-  .corner-tl { top: 10px; left: 10px; }
-  .corner-tr { top: 10px; right: 10px; }
-  .corner-bl { bottom: 10px; left: 10px; }
-  .corner-br { bottom: 10px; right: 10px; }
+  .corner-tl { top: 15px; left: 15px; }
+  .corner-tr { top: 15px; right: 15px; }
+  .corner-bl { bottom: 15px; left: 15px; }
+  .corner-br { bottom: 15px; right: 15px; }
   
   .flower-row {
+    gap: 15px;
+    padding: 0 10px;
+    margin: 20px 0;
+  }
+  .css-flower {
+    transform: scale(0.85);
+  }
+  
+  .section-title {
     font-size: 1.8rem;
-    gap: 8px;
-    padding: 0 5px;
+    margin: 1.5rem 0;
   }
   
   .balloons-canopy {
-    gap: 5px;
-    flex-wrap: wrap;
-    padding: 0;
-    margin-bottom: 1.5rem;
-    justify-content: space-evenly;
+    gap: 10px;
+    margin-bottom: 2rem;
+    justify-content: center;
   }
-  .balloon {
-    width: 45px; height: 55px;
+  .balloon-wrapper {
+    transform: scale(0.65);
   }
-  .balloon::before {
-    font-size: 0.65rem;
-    top: 50%;
-  }
-  .balloon-string { height: 40px; bottom: -46px; }
   
   .cake-container {
-    transform: scale(0.65);
-    margin: 0 auto 1.5rem;
+    transform: scale(0.7);
+    margin: 1.5rem auto 2.5rem;
   }
   
   .gift-box {
-    transform: scale(0.75);
+    transform: scale(0.85);
   }
   .gift-box:hover {
-    transform: scale(0.8) translateY(-5px);
+    transform: scale(0.9) translateY(-5px);
   }
   
   .gift-indicator {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 6px 15px;
-    top: -50px;
+    top: -55px;
   }
   
   .letter {
-    padding: 1.5rem 1rem;
+    padding: 2.5rem 1.5rem;
+    border-radius: 12px;
   }
   .letter h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
   }
   .letter p {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .letter-signature {
+    font-size: 1.3rem;
   }
   
   .finale-title {
-    font-size: clamp(2.5rem, 10vw, 4rem);
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+  .finale-subtitle {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
   }
 }
 
-/* Extra small devices (phones like iPhone SE) */
+/* Extra small devices */
 @media (max-width: 360px) {
   .cake-container {
+    transform: scale(0.6);
+  }
+  .balloon-wrapper {
     transform: scale(0.55);
   }
-  .balloons-canopy {
-    gap: 4px;
-  }
-  .balloon {
-    width: 40px; height: 50px;
-  }
-  .balloon-string { height: 35px; bottom: -41px; }
   .glass-panel {
-    padding: 1.5rem 0.8rem;
+    padding: 2rem 1rem;
   }
 }
+

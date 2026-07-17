@@ -47,20 +47,63 @@
       <div class="garden-glow"></div>
       <div class="flowers-container">
         <div class="flower-row">
-          <span class="floating-flower f1">🌸</span>
-          <span class="floating-flower f2">🌷</span>
-          <span class="floating-flower f3">💐</span>
-          <span class="floating-flower f4">🌺</span>
-          <span class="floating-flower f5">🌷</span>
-          <span class="floating-flower f6">🌸</span>
+          <div class="floating-flower f1">
+            <div class="css-flower flower-style-1">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
+          <div class="floating-flower f2">
+            <div class="css-flower flower-style-2">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
+          <div class="floating-flower f3">
+            <div class="css-flower flower-style-3">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
+          <div class="floating-flower f4">
+            <div class="css-flower flower-style-1">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
+          <div class="floating-flower f5">
+            <div class="css-flower flower-style-2">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
         </div>
         <h2 class="section-title">A garden blooms just for you.</h2>
         <div class="flower-row">
-          <span class="floating-flower f7">🌺</span>
-          <span class="floating-flower f8">🌸</span>
-          <span class="floating-flower f9">🌷</span>
-          <span class="floating-flower f10">💐</span>
-          <span class="floating-flower f11">🌺</span>
+          <div class="floating-flower f7">
+            <div class="css-flower flower-style-3">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
+          <div class="floating-flower f8">
+            <div class="css-flower flower-style-1">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
+          <div class="floating-flower f9">
+            <div class="css-flower flower-style-2">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
+          <div class="floating-flower f10">
+            <div class="css-flower flower-style-1">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -69,54 +112,85 @@
     <section class="section celebration-section">
       <!-- Balloons floating above the cake -->
       <div class="balloons-canopy">
+        <!-- Reusable SVG Definitions for Realistic Lighting -->
+        <svg style="width:0;height:0;position:absolute;" aria-hidden="true">
+          <defs>
+            <radialGradient id="grad-rose" cx="30%" cy="25%" r="70%">
+              <stop offset="0%" stop-color="#fff" />
+              <stop offset="15%" stop-color="#ffb6c1" />
+              <stop offset="70%" stop-color="#d88fa7" />
+              <stop offset="100%" stop-color="#b06b83" />
+            </radialGradient>
+            <radialGradient id="grad-gold" cx="30%" cy="25%" r="70%">
+              <stop offset="0%" stop-color="#fff" />
+              <stop offset="15%" stop-color="#fae1c3" />
+              <stop offset="70%" stop-color="#d4af37" />
+              <stop offset="100%" stop-color="#9a7c20" />
+            </radialGradient>
+            <radialGradient id="grad-blush" cx="30%" cy="25%" r="70%">
+              <stop offset="0%" stop-color="#fff" />
+              <stop offset="15%" stop-color="#fff0f5" />
+              <stop offset="70%" stop-color="#e6c8ce" />
+              <stop offset="100%" stop-color="#c4a5ab" />
+            </radialGradient>
+            <radialGradient id="grad-lavender" cx="30%" cy="25%" r="70%">
+              <stop offset="0%" stop-color="#fff" />
+              <stop offset="15%" stop-color="#f3e8ff" />
+              <stop offset="70%" stop-color="#c4a7e7" />
+              <stop offset="100%" stop-color="#9b7ec2" />
+            </radialGradient>
+            <filter id="balloon-glow"><feGaussianBlur stdDeviation="1.5"/></filter>
+          </defs>
+        </svg>
+
         <div class="balloon-wrapper balloon-1">
           <div class="balloon" data-color="rose">
-            <div class="balloon-body">
-              <div class="balloon-highlight"></div>
-              <div class="balloon-shine"></div>
-            </div>
-            <div class="balloon-knot"></div>
-            <div class="balloon-string"></div>
+            <svg viewBox="0 0 100 240" class="svg-balloon">
+              <path class="balloon-svg-body" fill="url(#grad-rose)" d="M50,10 C20,10 10,40 10,70 C10,105 35,125 45,135 C48,138 52,138 55,135 C65,125 90,105 90,70 C90,40 80,10 50,10 Z" />
+              <path class="balloon-svg-knot" fill="url(#grad-rose)" d="M45,135 C42,142 40,146 38,148 L62,148 C60,146 58,142 55,135 Z" />
+              <path d="M35,20 C25,25 20,35 20,50 C20,35 30,22 45,18 C40,18 37,19 35,20 Z" fill="rgba(255,255,255,0.7)" filter="url(#balloon-glow)"/>
+              <path class="balloon-svg-string" d="M50,148 C45,165 55,175 50,195 C45,215 55,225 50,240" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none" />
+            </svg>
           </div>
         </div>
         <div class="balloon-wrapper balloon-2">
           <div class="balloon" data-color="gold">
-            <div class="balloon-body">
-              <div class="balloon-highlight"></div>
-              <div class="balloon-shine"></div>
-            </div>
-            <div class="balloon-knot"></div>
-            <div class="balloon-string"></div>
+            <svg viewBox="0 0 100 240" class="svg-balloon">
+              <path class="balloon-svg-body" fill="url(#grad-gold)" d="M50,10 C20,10 10,40 10,70 C10,105 35,125 45,135 C48,138 52,138 55,135 C65,125 90,105 90,70 C90,40 80,10 50,10 Z" />
+              <path class="balloon-svg-knot" fill="url(#grad-gold)" d="M45,135 C42,142 40,146 38,148 L62,148 C60,146 58,142 55,135 Z" />
+              <path d="M35,20 C25,25 20,35 20,50 C20,35 30,22 45,18 C40,18 37,19 35,20 Z" fill="rgba(255,255,255,0.7)" filter="url(#balloon-glow)"/>
+              <path class="balloon-svg-string" d="M50,148 C45,165 55,175 50,195 C45,215 55,225 50,240" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none" />
+            </svg>
           </div>
         </div>
         <div class="balloon-wrapper balloon-3">
           <div class="balloon" data-color="blush">
-            <div class="balloon-body">
-              <div class="balloon-highlight"></div>
-              <div class="balloon-shine"></div>
-            </div>
-            <div class="balloon-knot"></div>
-            <div class="balloon-string"></div>
+            <svg viewBox="0 0 100 240" class="svg-balloon">
+              <path class="balloon-svg-body" fill="url(#grad-blush)" d="M50,10 C20,10 10,40 10,70 C10,105 35,125 45,135 C48,138 52,138 55,135 C65,125 90,105 90,70 C90,40 80,10 50,10 Z" />
+              <path class="balloon-svg-knot" fill="url(#grad-blush)" d="M45,135 C42,142 40,146 38,148 L62,148 C60,146 58,142 55,135 Z" />
+              <path d="M35,20 C25,25 20,35 20,50 C20,35 30,22 45,18 C40,18 37,19 35,20 Z" fill="rgba(255,255,255,0.7)" filter="url(#balloon-glow)"/>
+              <path class="balloon-svg-string" d="M50,148 C45,165 55,175 50,195 C45,215 55,225 50,240" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none" />
+            </svg>
           </div>
         </div>
         <div class="balloon-wrapper balloon-4">
           <div class="balloon" data-color="lavender">
-            <div class="balloon-body">
-              <div class="balloon-highlight"></div>
-              <div class="balloon-shine"></div>
-            </div>
-            <div class="balloon-knot"></div>
-            <div class="balloon-string"></div>
+            <svg viewBox="0 0 100 240" class="svg-balloon">
+              <path class="balloon-svg-body" fill="url(#grad-lavender)" d="M50,10 C20,10 10,40 10,70 C10,105 35,125 45,135 C48,138 52,138 55,135 C65,125 90,105 90,70 C90,40 80,10 50,10 Z" />
+              <path class="balloon-svg-knot" fill="url(#grad-lavender)" d="M45,135 C42,142 40,146 38,148 L62,148 C60,146 58,142 55,135 Z" />
+              <path d="M35,20 C25,25 20,35 20,50 C20,35 30,22 45,18 C40,18 37,19 35,20 Z" fill="rgba(255,255,255,0.7)" filter="url(#balloon-glow)"/>
+              <path class="balloon-svg-string" d="M50,148 C45,165 55,175 50,195 C45,215 55,225 50,240" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none" />
+            </svg>
           </div>
         </div>
         <div class="balloon-wrapper balloon-5">
           <div class="balloon" data-color="rose">
-            <div class="balloon-body">
-              <div class="balloon-highlight"></div>
-              <div class="balloon-shine"></div>
-            </div>
-            <div class="balloon-knot"></div>
-            <div class="balloon-string"></div>
+            <svg viewBox="0 0 100 240" class="svg-balloon">
+              <path class="balloon-svg-body" fill="url(#grad-rose)" d="M50,10 C20,10 10,40 10,70 C10,105 35,125 45,135 C48,138 52,138 55,135 C65,125 90,105 90,70 C90,40 80,10 50,10 Z" />
+              <path class="balloon-svg-knot" fill="url(#grad-rose)" d="M45,135 C42,142 40,146 38,148 L62,148 C60,146 58,142 55,135 Z" />
+              <path d="M35,20 C25,25 20,35 20,50 C20,35 30,22 45,18 C40,18 37,19 35,20 Z" fill="rgba(255,255,255,0.7)" filter="url(#balloon-glow)"/>
+              <path class="balloon-svg-string" d="M50,148 C45,165 55,175 50,195 C45,215 55,225 50,240" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none" />
+            </svg>
           </div>
         </div>
       </div>
@@ -164,7 +238,12 @@
     <!-- The Letter Section -->
     <section class="section letter-section">
       <div class="gift-box">
-        <div class="gift-indicator">Click to open! 🎁</div>
+        <div class="gift-indicator">
+          Click to open!
+          <svg viewBox="0 0 100 100" class="svg-sparkle small-sparkle">
+            <path d="M50 0 C50 40 60 50 100 50 C60 50 50 60 50 100 C50 60 40 50 0 50 C40 50 50 40 50 0 Z" fill="currentColor"/>
+          </svg>
+        </div>
         <div class="gift-ribbon-h"></div>
         <div class="gift-ribbon-v"></div>
         <div class="gift-bow">
@@ -182,7 +261,12 @@
           <div class="gold-ornament small-ornament">✦</div>
           <h3>To the incredibly special Zoya Irum Ali,</h3>
           <p>Today isn't just another day... it's the day you came into this world. Every moment with you is a gift, and today, the world celebrates you.</p>
-          <p class="letter-signature">Happy Birthday, Beautiful ❤️</p>
+          <p class="letter-signature">
+            Happy Birthday, Beautiful 
+            <svg viewBox="0 0 32 32" class="svg-heart">
+              <path d="M16 28 C16 28 3 19.5 3 10 C3 5.5 6.5 2 11 2 C13.5 2 15 3 16 4.5 C17 3 18.5 2 21 2 C25.5 2 29 5.5 29 10 C29 19.5 16 28 16 28 Z" fill="currentColor"/>
+            </svg>
+          </p>
         </div>
       </div>
     </section>
@@ -195,7 +279,11 @@
         <div class="decorative-line gold-line"></div>
         <p class="finale-subtitle">May all your dreams come true.</p>
         <div class="finale-sparkles">
-          <span>✨</span><span>🌟</span><span>✨</span><span>💫</span><span>✨</span>
+          <svg viewBox="0 0 100 100" class="svg-sparkle"><path d="M50 0 C50 40 60 50 100 50 C60 50 50 60 50 100 C50 60 40 50 0 50 C40 50 50 40 50 0 Z" fill="currentColor"/></svg>
+          <svg viewBox="0 0 100 100" class="svg-sparkle delay-1"><path d="M50 0 C50 40 60 50 100 50 C60 50 50 60 50 100 C50 60 40 50 0 50 C40 50 50 40 50 0 Z" fill="currentColor"/></svg>
+          <svg viewBox="0 0 100 100" class="svg-sparkle delay-2"><path d="M50 0 C50 40 60 50 100 50 C60 50 50 60 50 100 C50 60 40 50 0 50 C40 50 50 40 50 0 Z" fill="currentColor"/></svg>
+          <svg viewBox="0 0 100 100" class="svg-sparkle delay-1"><path d="M50 0 C50 40 60 50 100 50 C60 50 50 60 50 100 C50 60 40 50 0 50 C40 50 50 40 50 0 Z" fill="currentColor"/></svg>
+          <svg viewBox="0 0 100 100" class="svg-sparkle"><path d="M50 0 C50 40 60 50 100 50 C60 50 50 60 50 100 C50 60 40 50 0 50 C40 50 50 40 50 0 Z" fill="currentColor"/></svg>
         </div>
       </div>
     </section>

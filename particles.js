@@ -33,7 +33,7 @@ export function initParticles() {
   const particleTexture = new THREE.CanvasTexture(circleCanvas);
 
   const particlesMaterial = new THREE.PointsMaterial({
-    size: isMobile ? 0.9 : 0.6, // slightly larger on mobile since we have fewer
+    size: isMobile ? 1.5 : 0.8, // Larger and more distinct glow
     map: particleTexture,
     vertexColors: true,
     transparent: true,
@@ -71,9 +71,9 @@ export function initParticles() {
   }
 
   // Create two distinct swarms for complex motion without CPU looping
-  // drastically reduce count on mobile for max frame rate
-  const swarm1 = createSwarm(isMobile ? 300 : 1000);
-  const swarm2 = createSwarm(isMobile ? 300 : 1000);
+  // Boosted count on mobile for a rich atmosphere
+  const swarm1 = createSwarm(isMobile ? 600 : 1000);
+  const swarm2 = createSwarm(isMobile ? 600 : 1000);
   
   scene.add(swarm1);
   scene.add(swarm2);
@@ -108,17 +108,19 @@ export function initParticles() {
       targetY = mouseY * 0.001;
     }
 
-    // Swarm 1: Rotates one way, drifts
+    // Swarm 1: Rotates one way, drifts dynamically
     swarm1.rotation.y += 0.002;
     swarm1.rotation.x += 0.001;
     swarm1.rotation.z = Math.sin(elapsedTime * 0.3) * 0.1;
     swarm1.position.y = scrollY * 0.005 + Math.sin(elapsedTime * 0.4) * 2;
+    swarm1.position.x = Math.sin(elapsedTime * 0.2) * 1.5;
 
     // Swarm 2: Rotates opposite way, different drift
     swarm2.rotation.y -= 0.0015;
     swarm2.rotation.x -= 0.001;
     swarm2.rotation.z = Math.cos(elapsedTime * 0.2) * 0.1;
     swarm2.position.y = scrollY * 0.007 + Math.cos(elapsedTime * 0.3) * 3;
+    swarm2.position.x = Math.cos(elapsedTime * 0.25) * 2;
 
     // Snappier Parallax reacting to mouse (Desktop only)
     if (!isMobile) {
