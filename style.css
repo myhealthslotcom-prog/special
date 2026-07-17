@@ -1,12 +1,12 @@
 :root {
-  --color-bg-light: #fffaf0;
-  --color-bg-dark: #fcf4f5;
-  --color-gold: #d4af37;
-  --color-gold-light: #f3e5ab;
-  --color-rose: #d88fa7;
-  --color-text-main: #4a3b32;
-  --color-glass: rgba(255, 255, 255, 0.7);
-  --color-glass-border: rgba(212, 175, 55, 0.3);
+  --color-bg-light: #15161c;
+  --color-bg-dark: #0a0b10;
+  --color-gold: #e5b76b;
+  --color-gold-light: #fbf5b7;
+  --color-rose: #8a2444;
+  --color-text-main: #f0e6d2;
+  --color-glass: rgba(18, 20, 29, 0.65);
+  --color-glass-border: rgba(229, 183, 107, 0.25);
   
   --font-serif: 'Cormorant Garamond', 'Playfair Display', serif;
   --font-sans: 'Inter', sans-serif;
@@ -21,7 +21,7 @@
 body, html {
   width: 100%;
   height: 100%;
-  background: #fdf9f7; /* fallback */
+  background: var(--color-bg-dark);
   color: var(--color-text-main);
   font-family: var(--font-sans);
   overflow-x: hidden;
@@ -46,31 +46,31 @@ body, html {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: #fcf6f4;
+  background: var(--color-bg-dark);
   pointer-events: none;
 }
 .mesh-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.7;
+  filter: blur(100px);
+  opacity: 0.3; /* Dramatically reduced to stop overwhelming glow */
   animation: floatOrb 25s infinite ease-in-out alternate;
 }
 .orb-1 {
   width: 55vw; height: 55vw;
-  background: #f5d0d6; /* soft romantic rose */
+  background: rgba(229, 183, 107, 0.08); /* Reduced gold glow */
   top: -10%; left: -10%;
   animation-delay: 0s;
 }
 .orb-2 {
   width: 60vw; height: 60vw;
-  background: #fae1c3; /* champagne gold */
+  background: rgba(138, 36, 68, 0.08); /* Reduced deep ruby */
   bottom: -20%; right: -10%;
   animation-delay: -7s;
 }
 .orb-3 {
   width: 45vw; height: 45vw;
-  background: #e8d7dd; /* cool blush */
+  background: rgba(30, 40, 60, 0.2); /* Reduced midnight blue */
   top: 30%; left: 30%;
   animation-delay: -14s;
 }
@@ -106,18 +106,17 @@ body, html {
   justify-content: center;
   align-items: center;
   padding: 4rem 1.5rem;
-  /* overflow: hidden removed to stop vertical clipping on mobile */
 }
 
 /* Glassmorphism Panel */
 .glass-panel {
   background: var(--color-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--color-glass-border);
   border-radius: 12px;
   padding: 4rem 3rem;
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.08);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(229, 183, 107, 0.05);
   text-align: center;
   max-width: 800px;
   width: 100%;
@@ -134,14 +133,13 @@ h1, h2, h3 {
 .title-main {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--color-text-main), var(--color-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-text-main);
+  text-shadow: 0 4px 15px rgba(229,183,107,0.3);
 }
 
 .subtitle-main {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: #7b6a5e;
+  color: #b5a99c;
   font-weight: 300;
   letter-spacing: 0.05em;
   font-style: italic;
@@ -152,7 +150,7 @@ h1, h2, h3 {
   font-size: clamp(2rem, 4vw, 3.5rem);
   text-align: center;
   color: var(--color-text-main);
-  text-shadow: 0 4px 15px rgba(255,255,255,0.8);
+  text-shadow: 0 4px 25px rgba(0,0,0,0.9);
 }
 
 /* Ornaments & Lines */
@@ -179,6 +177,67 @@ h1, h2, h3 {
 .corner-tr { top: 30px; right: 30px; border-left: none; border-bottom: none; }
 .corner-bl { bottom: 30px; left: 30px; border-right: none; border-top: none; }
 .corner-br { bottom: 30px; right: 30px; border-left: none; border-top: none; }
+
+/* Flower Framing Layout */
+.garden-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  max-width: 600px;
+}
+
+.real-flower {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+  will-change: transform, opacity;
+  z-index: 5;
+}
+
+.rose-tl {
+  top: 0; left: 5%;
+  transform: rotate(-15deg);
+  width: 180px;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)) brightness(0.8);
+}
+
+.rose-tr {
+  top: 5%; right: 5%;
+  transform: rotate(20deg) scaleX(-1);
+  width: 160px;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)) brightness(0.7);
+}
+
+.rose-bl {
+  bottom: 10%; left: 10%;
+  transform: rotate(-5deg);
+  width: 240px;
+  z-index: 15; /* Sits in front of text */
+}
+
+.rose-br {
+  bottom: 5%; right: 10%;
+  transform: rotate(10deg) scaleX(-1);
+  width: 220px;
+  z-index: 15; /* Sits in front of text */
+}
+
+.rose-bottom {
+  bottom: -10%; left: 50%;
+  margin-left: -150px;
+  transform: rotate(0deg);
+  width: 300px;
+  z-index: 15; /* Sits in front of text */
+}
+
+@media (max-width: 768px) {
+  .real-flower { width: 120px; }
+  .rose-tl { width: 100px; left: -5%; top: -10%; }
+  .rose-tr { width: 90px; right: -5%; top: -5%; }
+  .rose-bl { width: 130px; left: 0; bottom: 0; }
+  .rose-br { width: 120px; right: 0; bottom: -5%; }
+  .rose-bottom { width: 180px; margin-left: -90px; bottom: -15%; }
+}
 
 /* Scroll Indicator */
 .scroll-indicator {
@@ -214,104 +273,6 @@ h1, h2, h3 {
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* Magic Garden */
-.flower-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin: 30px 0;
-  font-size: 2.5rem;
-  opacity: 0.8;
-}
-.floating-flower {
-  animation: floatFlower 4s infinite ease-in-out alternate;
-  will-change: transform;
-}
-.f1, .f7 { animation-delay: 0s; }
-.f2, .f8 { animation-delay: 0.5s; }
-.f3, .f9 { animation-delay: 1s; }
-.f4, .f10 { animation-delay: 1.5s; }
-.f5, .f11 { animation-delay: 0.2s; }
-.f6 { animation-delay: 0.8s; }
-
-@keyframes floatFlower {
-  0% { transform: translateY(0) rotate(-10deg); }
-  100% { transform: translateY(-15px) rotate(10deg); }
-}
-
-/* Premium CSS Flowers */
-.css-flower {
-  position: relative;
-  width: 50px;
-  height: 50px;
-}
-.css-flower .petal {
-  position: absolute;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-  transform-origin: center bottom;
-  opacity: 0.9;
-}
-.css-flower .flower-center {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: radial-gradient(circle, #fff, var(--color-gold));
-  border-radius: 50%;
-  top: 18px;
-  left: 18px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.3);
-  z-index: 2;
-}
-
-/* Style 1: Rose / Pink */
-.flower-style-1 .petal {
-  width: 20px;
-  height: 35px;
-  background: linear-gradient(to top, #e6c8ce, #d88fa7);
-  border-radius: 50%;
-  top: 0px;
-  left: 15px;
-}
-.flower-style-1 .petal:nth-child(1) { transform: rotate(0deg); }
-.flower-style-1 .petal:nth-child(2) { transform: rotate(72deg); }
-.flower-style-1 .petal:nth-child(3) { transform: rotate(144deg); }
-.flower-style-1 .petal:nth-child(4) { transform: rotate(216deg); }
-.flower-style-1 .petal:nth-child(5) { transform: rotate(288deg); }
-
-/* Style 2: Lotus / Gold */
-.flower-style-2 .petal {
-  width: 14px;
-  height: 40px;
-  background: linear-gradient(to top, #fff, #f9e596);
-  border-radius: 50% 50% 0 0;
-  top: -5px;
-  left: 18px;
-}
-.flower-style-2 .petal:nth-child(1) { transform: rotate(0deg); }
-.flower-style-2 .petal:nth-child(2) { transform: rotate(45deg); }
-.flower-style-2 .petal:nth-child(3) { transform: rotate(90deg); }
-.flower-style-2 .petal:nth-child(4) { transform: rotate(135deg); }
-.flower-style-2 .petal:nth-child(5) { transform: rotate(180deg); }
-.flower-style-2 .petal:nth-child(6) { transform: rotate(225deg); }
-.flower-style-2 .petal:nth-child(7) { transform: rotate(270deg); }
-.flower-style-2 .petal:nth-child(8) { transform: rotate(315deg); }
-
-/* Style 3: Lavender / Geometric */
-.flower-style-3 .petal {
-  width: 26px;
-  height: 26px;
-  background: linear-gradient(135deg, #f3e8ff, #c4a7e7);
-  border-radius: 2px 50% 50% 50%;
-  top: 5px;
-  left: 12px;
-  transform-origin: 13px 20px;
-}
-.flower-style-3 .petal:nth-child(1) { transform: rotate(0deg); }
-.flower-style-3 .petal:nth-child(2) { transform: rotate(90deg); }
-.flower-style-3 .petal:nth-child(3) { transform: rotate(180deg); }
-.flower-style-3 .petal:nth-child(4) { transform: rotate(270deg); }
-
 /* Celebration Section */
 .celebration-section {
   flex-direction: column;
@@ -333,7 +294,7 @@ h1, h2, h3 {
   align-items: flex-end;
   gap: 25px;
   width: 100%;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
   z-index: 10;
 }
 .balloon-wrapper {
@@ -409,6 +370,14 @@ h1, h2, h3 {
   transform: scale(1.3);
   transform-origin: bottom center;
 }
+.cake {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
 .cake-plate {
   width: 260px;
   height: 15px;
@@ -446,21 +415,29 @@ h1, h2, h3 {
   box-shadow: inset -10px 0 20px rgba(0,0,0,0.05);
 }
 
+.spark-text {
+  color: var(--color-gold);
+  text-shadow: 0 2px 10px rgba(229, 183, 107, 0.4);
+}
+
 .frosting-drip {
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 15px;
+  width: 100%;
+  height: 15px;
   background: var(--color-rose);
-  border-radius: 0 0 10px 10px;
+  border-radius: 5px 5px 0 0;
 }
 .frosting-drip::after {
   content: '';
   position: absolute;
-  top: 15px; left: 20%;
-  width: 15px; height: 15px;
-  background: var(--color-rose);
-  border-radius: 50%;
-  box-shadow: 40px -5px 0 var(--color-rose), 80px -2px 0 var(--color-rose);
+  top: 14px; left: 0;
+  width: 100%;
+  height: 15px;
+  background: radial-gradient(circle at 50% 0, var(--color-rose) 50%, transparent 55%);
+  background-size: 25px 15px;
+  background-position: center;
+  background-repeat: repeat-x;
 }
 
 /* Candles */
@@ -469,6 +446,8 @@ h1, h2, h3 {
   gap: 15px;
   position: absolute;
   top: -30px; 
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 5;
 }
 .candle {
@@ -506,39 +485,53 @@ h1, h2, h3 {
 /* The Letter Section */
 .letter-section {
   flex-direction: column;
+  position: relative;
+}
+
+.letter-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 60%);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Luxury Gift Box */
 .gift-box {
-  width: 200px;
+  width: 240px;
   height: 200px;
-  background: linear-gradient(135deg, #e6c8ce, #f4e1e5);
+  background: linear-gradient(145deg, #7c1e3a, #4a1020); /* Deep Burgundy Velvet */
   position: relative;
-  border-radius: 4px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  border-radius: 8px 8px 4px 4px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2), inset 0 0 20px rgba(0,0,0,0.4);
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin: 0 auto;
   z-index: 5;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .gift-box:hover {
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  transform: scale(1.05) translateY(-10px) rotate(2deg);
+  box-shadow: 0 35px 60px rgba(0,0,0,0.25), 0 0 40px rgba(212,175,55,0.3); /* Gold glow on hover */
 }
 
 .gift-indicator {
   position: absolute;
-  top: -60px;
+  top: -70px;
   left: 50%;
   transform: translateX(-50%);
-  color: var(--color-rose);
+  color: #fff;
   font-weight: bold;
   font-size: 1.1rem;
-  background: #fff;
-  padding: 8px 20px;
+  background: var(--color-gold);
+  padding: 8px 24px;
   border-radius: 30px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
   animation: bounceIndicator 2s infinite;
   white-space: nowrap;
   pointer-events: none;
@@ -552,7 +545,7 @@ h1, h2, h3 {
   transform: translateX(-50%);
   border-width: 6px 6px 0;
   border-style: solid;
-  border-color: #fff transparent transparent transparent;
+  border-color: var(--color-gold) transparent transparent transparent;
 }
 @keyframes bounceIndicator {
   0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
@@ -568,37 +561,38 @@ h1, h2, h3 {
 }
 .gift-pattern {
   width: 100%; height: 100%;
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(212, 175, 55, 0.15) 15px, rgba(212, 175, 55, 0.15) 30px);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(255, 255, 255, 0.05) 15px, rgba(255, 255, 255, 0.05) 30px);
 }
 .gift-lid {
-  width: 210px;
-  height: 40px;
-  background: linear-gradient(135deg, #f4e1e5, #e6c8ce);
+  width: 250px;
+  height: 50px;
+  background: linear-gradient(145deg, #8a2444, #5a1428);
   position: absolute;
-  top: -15px;
+  top: -20px;
   left: -5px;
-  border-radius: 4px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.2);
   z-index: 6;
 }
 
-/* Ribbons */
+/* Gold Foil Ribbons */
 .gift-ribbon-v, .gift-ribbon-h {
   position: absolute;
-  background: var(--color-gold);
+  background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
   z-index: 7;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 .gift-ribbon-v {
-  width: 30px; height: 100%;
+  width: 35px; height: 100%;
   left: 50%; transform: translateX(-50%);
 }
 .gift-ribbon-h {
-  width: 100%; height: 30px;
+  width: 100%; height: 35px;
   top: 50%; transform: translateY(-50%);
 }
 .gift-bow {
   position: absolute;
-  top: -35px;
+  top: -55px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 8;
@@ -607,23 +601,26 @@ h1, h2, h3 {
   justify-content: center;
 }
 .bow-loop {
-  width: 45px; height: 35px;
-  background: var(--color-gold);
-  border-radius: 50px;
+  width: 60px; height: 50px;
+  background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.2);
 }
-.bow-left { transform: translateX(12px) rotate(-35deg); }
-.bow-right { transform: translateX(-12px) rotate(35deg); }
+.bow-left { transform: translateX(15px) rotate(-45deg); border-radius: 50% 50% 0 50%; }
+.bow-right { transform: translateX(-15px) rotate(135deg); border-radius: 50% 50% 50% 0; }
 .bow-center {
-  width: 24px; height: 24px;
-  background: #b8972e;
+  width: 30px; height: 30px;
+  background: radial-gradient(circle, #fcf6ba, #bf953f);
   border-radius: 50%;
   position: absolute;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .letter-container {
-  perspective: 1000px;
+  perspective: 1500px;
   width: 100%;
-  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: -100px; 
   opacity: 0;
   pointer-events: none; 
@@ -632,33 +629,134 @@ h1, h2, h3 {
 }
 .letter-container.revealed { pointer-events: auto; }
 
-.letter {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 4rem;
+/* The 3D Book */
+.book {
+  position: relative;
+  width: 320px; 
+  height: 420px;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.book.open {
+  transform: translateX(160px); /* Centers the open book */
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+}
+.page.flipped {
+  transform: rotateY(-180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #fdfaf6; /* Vintage ivory paper */
   border: 1px solid var(--color-gold);
-  border-radius: 8px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5), inset 0 0 40px rgba(212,175,55,0.15);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  border-radius: 4px 12px 12px 4px;
 }
-.letter h3 {
+.back {
+  transform: rotateY(180deg);
+  border-radius: 12px 4px 4px 12px;
+}
+
+/* Spine Shading */
+.front::before, .back::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 25px;
+  background: linear-gradient(to right, rgba(0,0,0,0.15), transparent);
+  pointer-events: none;
+  z-index: 10;
+}
+.front::before { left: 0; border-radius: 4px 0 0 4px; }
+.back::before { right: 0; border-radius: 0 4px 4px 0; background: linear-gradient(to left, rgba(0,0,0,0.15), transparent); }
+
+/* Framed Page Content */
+.framed-content {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--color-gold);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.framed-content::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--color-gold);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.framed-content::after {
+  content: '✦';
+  position: absolute;
+  top: 10px;
+  color: var(--color-gold);
+  font-size: 1rem;
+}
+.framed-content .bottom-ornament {
+  position: absolute;
+  bottom: 10px;
+  color: var(--color-gold);
+  font-size: 1rem;
+}
+
+.framed-content h3 {
   font-size: 2.2rem;
-  margin-bottom: 2rem;
-  color: var(--color-text-main);
-  font-family: var(--font-serif);
-  font-style: italic;
-}
-.letter p {
-  font-size: 1.15rem;
-  line-height: 1.8;
   margin-bottom: 1.5rem;
-  color: #555;
+  color: #2b1f19;
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-bottom: 1px solid rgba(212,175,55,0.4);
+  padding-bottom: 15px;
+}
+.framed-content p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  color: #3b2b23;
+  font-family: var(--font-serif);
+  font-weight: 500;
+}
+.drop-cap::first-letter {
+  font-size: 3.8rem;
+  float: left;
+  line-height: 0.8;
+  padding-top: 4px;
+  padding-right: 8px;
+  color: var(--color-gold);
+  font-family: var(--font-serif);
 }
 .letter-signature {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-style: italic;
   color: var(--color-rose);
-  margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -682,11 +780,8 @@ h1, h2, h3 {
 /* Finale */
 .finale-title {
   font-size: clamp(3rem, 8vw, 6rem);
-  background: linear-gradient(to right, var(--color-text-main), var(--color-gold), var(--color-text-main));
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 4s linear infinite;
+  color: var(--color-text-main);
+  text-shadow: 0 4px 20px rgba(229,183,107,0.5);
   text-align: center;
 }
 

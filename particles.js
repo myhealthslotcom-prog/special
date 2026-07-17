@@ -5,8 +5,8 @@ export function initParticles() {
   if (!canvas) return;
 
   const scene = new THREE.Scene();
-  // Soft ambient fog
-  scene.fog = new THREE.FogExp2(0xfdfaf6, 0.002);
+  // Deep Obsidian fog
+  scene.fog = new THREE.FogExp2(0x0a0b10, 0.003);
 
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 30;
@@ -33,7 +33,7 @@ export function initParticles() {
   const particleTexture = new THREE.CanvasTexture(circleCanvas);
 
   const particlesMaterial = new THREE.PointsMaterial({
-    size: isMobile ? 1.5 : 0.8, // Larger and more distinct glow
+    size: isMobile ? 1.8 : 1.2, // Larger and more distinct glow against dark mode
     map: particleTexture,
     vertexColors: true,
     transparent: true,
@@ -48,8 +48,8 @@ export function initParticles() {
     const posArray = new Float32Array(count * 3);
     const colorsArray = new Float32Array(count * 3);
     
-    const color1 = new THREE.Color(0xd4af37); // Rich gold
-    const color2 = new THREE.Color(0xf3e5ab); // Champagne
+    const color1 = new THREE.Color(0xe5b76b); // Rich gold
+    const color2 = new THREE.Color(0xfbf5b7); // Champagne light gold
     const color3 = new THREE.Color(0xffffff); // White sparkle
 
     for(let i = 0; i < count * 3; i+=3) {
@@ -71,9 +71,9 @@ export function initParticles() {
   }
 
   // Create two distinct swarms for complex motion without CPU looping
-  // Boosted count on mobile for a rich atmosphere
-  const swarm1 = createSwarm(isMobile ? 600 : 1000);
-  const swarm2 = createSwarm(isMobile ? 600 : 1000);
+  // Significantly boosted counts to make the background 'more happening'
+  const swarm1 = createSwarm(isMobile ? 1200 : 2500);
+  const swarm2 = createSwarm(isMobile ? 1200 : 2500);
   
   scene.add(swarm1);
   scene.add(swarm2);
@@ -109,18 +109,20 @@ export function initParticles() {
     }
 
     // Swarm 1: Rotates one way, drifts dynamically
-    swarm1.rotation.y += 0.002;
-    swarm1.rotation.x += 0.001;
-    swarm1.rotation.z = Math.sin(elapsedTime * 0.3) * 0.1;
-    swarm1.position.y = scrollY * 0.005 + Math.sin(elapsedTime * 0.4) * 2;
-    swarm1.position.x = Math.sin(elapsedTime * 0.2) * 1.5;
+    swarm1.rotation.y += 0.003; // Faster base rotation
+    swarm1.rotation.x += 0.0015;
+    swarm1.rotation.z = Math.sin(elapsedTime * 0.4) * 0.15;
+    // Increased vertical drift speed to feel more active
+    swarm1.position.y = scrollY * 0.005 + Math.sin(elapsedTime * 0.8) * 4;
+    swarm1.position.x = Math.sin(elapsedTime * 0.3) * 2;
 
     // Swarm 2: Rotates opposite way, different drift
-    swarm2.rotation.y -= 0.0015;
-    swarm2.rotation.x -= 0.001;
-    swarm2.rotation.z = Math.cos(elapsedTime * 0.2) * 0.1;
-    swarm2.position.y = scrollY * 0.007 + Math.cos(elapsedTime * 0.3) * 3;
-    swarm2.position.x = Math.cos(elapsedTime * 0.25) * 2;
+    swarm2.rotation.y -= 0.0025;
+    swarm2.rotation.x -= 0.0015;
+    swarm2.rotation.z = Math.cos(elapsedTime * 0.3) * 0.15;
+    // Increased vertical drift speed
+    swarm2.position.y = scrollY * 0.007 + Math.cos(elapsedTime * 0.7) * 5;
+    swarm2.position.x = Math.cos(elapsedTime * 0.4) * 3;
 
     // Snappier Parallax reacting to mouse (Desktop only)
     if (!isMobile) {
@@ -128,6 +130,21 @@ export function initParticles() {
       swarm1.rotation.x += 0.05 * (targetY - swarm1.rotation.x);
       swarm2.rotation.y += 0.05 * (targetX - swarm2.rotation.y);
       swarm2.rotation.x += 0.05 * (targetY - swarm2.rotation.x);
+    } else {
+      // Much more dynamic activity for mobile to compensate for no mouse parallax
+      swarm1.rotation.y += 0.008; // Faster spinning
+      swarm1.rotation.x += 0.005;
+      swarm2.rotation.y -= 0.01;
+      swarm2.rotation.x -= 0.004;
+      
+      // Dramatic vertical breathing motion
+      swarm1.position.y += Math.sin(elapsedTime * 2.0) * 0.15;
+      swarm2.position.y -= Math.cos(elapsedTime * 1.8) * 0.2;
+      
+      // Pulse scale for a shimmering effect
+      const scalePulse = 1 + Math.sin(elapsedTime * 3) * 0.05;
+      swarm1.scale.set(scalePulse, scalePulse, scalePulse);
+      swarm2.scale.set(2 - scalePulse, 2 - scalePulse, 2 - scalePulse);
     }
 
     renderer.render(scene, camera);

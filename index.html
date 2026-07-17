@@ -46,64 +46,30 @@
     <section class="section magic-garden">
       <div class="garden-glow"></div>
       <div class="flowers-container">
-        <div class="flower-row">
-          <div class="floating-flower f1">
-            <div class="css-flower flower-style-1">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
-          <div class="floating-flower f2">
-            <div class="css-flower flower-style-2">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
-          <div class="floating-flower f3">
-            <div class="css-flower flower-style-3">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
-          <div class="floating-flower f4">
-            <div class="css-flower flower-style-1">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
-          <div class="floating-flower f5">
-            <div class="css-flower flower-style-2">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
-        </div>
-        <h2 class="section-title">A garden blooms just for you.</h2>
-        <div class="flower-row">
-          <div class="floating-flower f7">
-            <div class="css-flower flower-style-3">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
-          <div class="floating-flower f8">
-            <div class="css-flower flower-style-1">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
-          <div class="floating-flower f9">
-            <div class="css-flower flower-style-2">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
-          <div class="floating-flower f10">
-            <div class="css-flower flower-style-1">
-              <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-              <div class="flower-center"></div>
-            </div>
-          </div>
+        <svg style="width:0;height:0;position:absolute;" aria-hidden="true">
+          <defs>
+            <linearGradient id="lotus-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#fff" />
+              <stop offset="100%" stop-color="#f9e596" />
+            </linearGradient>
+            <linearGradient id="rose-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#e6c8ce" />
+              <stop offset="100%" stop-color="#d88fa7" />
+            </linearGradient>
+            <linearGradient id="lily-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#f3e8ff" />
+              <stop offset="100%" stop-color="#c4a7e7" />
+            </linearGradient>
+            <filter id="flower-glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <div class="flowers-frame" style="position: relative; width: 100%; max-width: 1000px; height: 60vh; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+          <h2 class="section-title spark-text garden-title" style="position: relative; z-index: 10; padding: 0 20px; white-space: normal;">A garden blooms just for you...</h2>
+          
+          <!-- Roses Framing the Text -->
+          <img src="./luxury_crimson_rose_1784321133740_alpha.png" class="real-flower rose-tl" alt="Crimson Rose" />
+          <img src="./luxury_crimson_rose_1784321133740_alpha.png" class="real-flower rose-bl" alt="Crimson Rose" />
+          <img src="./luxury_crimson_rose_1784321133740_alpha.png" class="real-flower rose-tr" alt="Crimson Rose" />
+          <img src="./luxury_crimson_rose_1784321133740_alpha.png" class="real-flower rose-br" alt="Crimson Rose" />
+          <img src="./luxury_crimson_rose_1784321133740_alpha.png" class="real-flower rose-bottom" alt="Crimson Rose" />
         </div>
       </div>
     </section>
@@ -173,26 +139,6 @@
             </svg>
           </div>
         </div>
-        <div class="balloon-wrapper balloon-4">
-          <div class="balloon" data-color="lavender">
-            <svg viewBox="0 0 100 240" class="svg-balloon">
-              <path class="balloon-svg-body" fill="url(#grad-lavender)" d="M50,10 C20,10 10,40 10,70 C10,105 35,125 45,135 C48,138 52,138 55,135 C65,125 90,105 90,70 C90,40 80,10 50,10 Z" />
-              <path class="balloon-svg-knot" fill="url(#grad-lavender)" d="M45,135 C42,142 40,146 38,148 L62,148 C60,146 58,142 55,135 Z" />
-              <path d="M35,20 C25,25 20,35 20,50 C20,35 30,22 45,18 C40,18 37,19 35,20 Z" fill="rgba(255,255,255,0.7)" filter="url(#balloon-glow)"/>
-              <path class="balloon-svg-string" d="M50,148 C45,165 55,175 50,195 C45,215 55,225 50,240" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none" />
-            </svg>
-          </div>
-        </div>
-        <div class="balloon-wrapper balloon-5">
-          <div class="balloon" data-color="rose">
-            <svg viewBox="0 0 100 240" class="svg-balloon">
-              <path class="balloon-svg-body" fill="url(#grad-rose)" d="M50,10 C20,10 10,40 10,70 C10,105 35,125 45,135 C48,138 52,138 55,135 C65,125 90,105 90,70 C90,40 80,10 50,10 Z" />
-              <path class="balloon-svg-knot" fill="url(#grad-rose)" d="M45,135 C42,142 40,146 38,148 L62,148 C60,146 58,142 55,135 Z" />
-              <path d="M35,20 C25,25 20,35 20,50 C20,35 30,22 45,18 C40,18 37,19 35,20 Z" fill="rgba(255,255,255,0.7)" filter="url(#balloon-glow)"/>
-              <path class="balloon-svg-string" d="M50,148 C45,165 55,175 50,195 C45,215 55,225 50,240" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none" />
-            </svg>
-          </div>
-        </div>
       </div>
 
       <div class="celebration-content">
@@ -237,6 +183,7 @@
 
     <!-- The Letter Section -->
     <section class="section letter-section">
+      <div class="letter-glow"></div>
       <div class="gift-box">
         <div class="gift-indicator">
           Click to open!
@@ -257,16 +204,46 @@
         </div>
       </div>
       <div class="letter-container">
-        <div class="letter glass-panel">
-          <div class="gold-ornament small-ornament">✦</div>
-          <h3>To the incredibly special Zoya Irum Ali,</h3>
-          <p>Today isn't just another day... it's the day you came into this world. Every moment with you is a gift, and today, the world celebrates you.</p>
-          <p class="letter-signature">
-            Happy Birthday, Beautiful 
-            <svg viewBox="0 0 32 32" class="svg-heart">
-              <path d="M16 28 C16 28 3 19.5 3 10 C3 5.5 6.5 2 11 2 C13.5 2 15 3 16 4.5 C17 3 18.5 2 21 2 C25.5 2 29 5.5 29 10 C29 19.5 16 28 16 28 Z" fill="currentColor"/>
-            </svg>
-          </p>
+        <div class="book">
+          <!-- Page 1 (Cover) -->
+          <div class="page cover" style="z-index: 3;">
+            <div class="front glass-panel" style="background: rgba(18, 20, 29, 0.9);">
+              <div class="gold-ornament small-ornament">✦</div>
+              <h3 style="margin-top: 2rem; color: var(--color-gold); font-family: var(--font-serif);">A Message For You</h3>
+              <p class="instruction-text" style="color: var(--color-text-main); font-weight: bold; margin-top: 4rem;">Click to open <br/> ➔</p>
+            </div>
+            <div class="back">
+              <div class="page-content framed-content">
+                <div class="bottom-ornament">✦</div>
+                <h3>Chapter I</h3>
+                <p class="drop-cap">Today is not simply a date on a calendar; it is a momentous celebration of existence.</p>
+                <p>It marks the arrival of a brilliant light into this universe—a soul destined to bring unparalleled warmth, joy, and profound meaning to the lives of those fortunate enough to cross her path.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Page 2 (Inside Right) -->
+          <div class="page inside" style="z-index: 2;">
+            <div class="front">
+              <div class="page-content framed-content">
+                <div class="bottom-ornament">✦</div>
+                <p class="drop-cap">Every single moment spent in your presence feels like uncovering a remarkable treasure.</p>
+                <p>Your beautiful laughter illuminates the darkest of rooms, and your boundless kindness inspires everyone who has the absolute honor of knowing you.</p>
+                <div class="decorative-line" style="width: 50px; margin: 10px auto;"></div>
+                <p>Today, it is our greatest privilege to celebrate the incredibly beautiful masterpiece that you are.</p>
+                <p class="letter-signature" style="margin-top: 1rem;">
+                  Happy Birthday, Beautiful 
+                  <svg viewBox="0 0 32 32" class="svg-heart">
+                    <path d="M16 28 C16 28 3 19.5 3 10 C3 5.5 6.5 2 11 2 C13.5 2 15 3 16 4.5 C17 3 18.5 2 21 2 C25.5 2 29 5.5 29 10 C29 19.5 16 28 16 28 Z" fill="currentColor"/>
+                  </svg>
+                </p>
+              </div>
+            </div>
+            <div class="back glass-panel" style="background: rgba(18, 20, 29, 0.9);">
+              <div class="page-content">
+                <div class="gold-ornament">✦</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
