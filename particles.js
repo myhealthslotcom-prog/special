@@ -11,38 +11,12 @@ export function initParticles() {
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 30;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  const isMobile = window.innerWidth < 768;
+  
+  // Disable antialias for performance, clamp pixel ratio
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  // Romantic petals / bokeh particles
-  const particlesGeometry = new THREE.BufferGeometry();
-  const particlesCount = 1000;
-  const posArray = new Float32Array(particlesCount * 3);
-  const colorsArray = new Float32Array(particlesCount * 3);
-  const scaleArray = new Float32Array(particlesCount); // For varying sizes
-
-  const color1 = new THREE.Color(0xffe3ec); // Soft blush
-  const color2 = new THREE.Color(0xd88fa7); // Rose
-  const color3 = new THREE.Color(0xffffff); // White
-
-  for(let i = 0; i < particlesCount * 3; i+=3) {
-    posArray[i] = (Math.random() - 0.5) * 100; // x
-    posArray[i+1] = (Math.random() - 0.5) * 100; // y
-    posArray[i+2] = (Math.random() - 0.5) * 50; // z
-
-    const rColors = [color1, color2, color3];
-    const pickedColor = rColors[Math.floor(Math.random() * rColors.length)];
-    colorsArray[i] = pickedColor.r;
-    colorsArray[i+1] = pickedColor.g;
-    colorsArray[i+2] = pickedColor.b;
-    
-    scaleArray[i/3] = Math.random();
-  }
-
-  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-  particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
-  particlesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1));
+  renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
 
   // Circular bokeh texture
   const circleCanvas = document.createElement('canvas');
@@ -51,25 +25,58 @@ export function initParticles() {
   const ctx = circleCanvas.getContext('2d');
   const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
   gradient.addColorStop(0, 'rgba(255,255,255,1)');
-  gradient.addColorStop(0.3, 'rgba(255,255,255,0.8)');
-  gradient.addColorStop(0.8, 'rgba(255,255,255,0.1)');
+  gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
+  gradient.addColorStop(0.6, 'rgba(255,255,255,0.2)');
   gradient.addColorStop(1, 'rgba(255,255,255,0)');
   ctx.fillStyle = gradient;
   ctx.fillRect(0,0,32,32);
   const particleTexture = new THREE.CanvasTexture(circleCanvas);
 
   const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.8,
+    size: isMobile ? 0.9 : 0.6, // slightly larger on mobile since we have fewer
     map: particleTexture,
     vertexColors: true,
     transparent: true,
-    opacity: 0.6,
-    blending: THREE.NormalBlending,
+    opacity: 0.9,
+    blending: THREE.AdditiveBlending, // Makes overlapping particles glow
     depthWrite: false
   });
 
-  const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-  scene.add(particlesMesh);
+  // Helper to create a swarm mesh
+  function createSwarm(count) {
+    const geometry = new THREE.BufferGeometry();
+    const posArray = new Float32Array(count * 3);
+    const colorsArray = new Float32Array(count * 3);
+    
+    const color1 = new THREE.Color(0xd4af37); // Rich gold
+    const color2 = new THREE.Color(0xf3e5ab); // Champagne
+    const color3 = new THREE.Color(0xffffff); // White sparkle
+
+    for(let i = 0; i < count * 3; i+=3) {
+      posArray[i] = (Math.random() - 0.5) * 120; // x spread
+      posArray[i+1] = (Math.random() - 0.5) * 120; // y spread
+      posArray[i+2] = (Math.random() - 0.5) * 60; // z spread
+
+      const rColors = [color1, color2, color3];
+      const pickedColor = rColors[Math.floor(Math.random() * rColors.length)];
+      colorsArray[i] = pickedColor.r;
+      colorsArray[i+1] = pickedColor.g;
+      colorsArray[i+2] = pickedColor.b;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+    
+    return new THREE.Points(geometry, particlesMaterial);
+  }
+
+  // Create two distinct swarms for complex motion without CPU looping
+  // drastically reduce count on mobile for max frame rate
+  const swarm1 = createSwarm(isMobile ? 300 : 1000);
+  const swarm2 = createSwarm(isMobile ? 300 : 1000);
+  
+  scene.add(swarm1);
+  scene.add(swarm2);
 
   let mouseX = 0;
   let mouseY = 0;
@@ -80,6 +87,7 @@ export function initParticles() {
   const windowHalfY = window.innerHeight / 2;
 
   document.addEventListener('mousemove', (event) => {
+    if (isMobile) return; // Skip mouse parallax calculation on mobile touch for perf
     mouseX = (event.clientX - windowHalfX);
     mouseY = (event.clientY - windowHalfY);
   });
@@ -95,19 +103,30 @@ export function initParticles() {
     requestAnimationFrame(animate);
     const elapsedTime = clock.getElapsedTime();
 
-    targetX = mouseX * 0.001;
-    targetY = mouseY * 0.001;
+    if (!isMobile) {
+      targetX = mouseX * 0.001;
+      targetY = mouseY * 0.001;
+    }
 
-    // Gentle floating
-    particlesMesh.rotation.y += 0.0003;
-    particlesMesh.rotation.x += 0.0001;
+    // Swarm 1: Rotates one way, drifts
+    swarm1.rotation.y += 0.002;
+    swarm1.rotation.x += 0.001;
+    swarm1.rotation.z = Math.sin(elapsedTime * 0.3) * 0.1;
+    swarm1.position.y = scrollY * 0.005 + Math.sin(elapsedTime * 0.4) * 2;
 
-    // Soft Parallax
-    particlesMesh.rotation.y += 0.02 * (targetX - particlesMesh.rotation.y);
-    particlesMesh.rotation.x += 0.02 * (targetY - particlesMesh.rotation.x);
+    // Swarm 2: Rotates opposite way, different drift
+    swarm2.rotation.y -= 0.0015;
+    swarm2.rotation.x -= 0.001;
+    swarm2.rotation.z = Math.cos(elapsedTime * 0.2) * 0.1;
+    swarm2.position.y = scrollY * 0.007 + Math.cos(elapsedTime * 0.3) * 3;
 
-    // Floating up instead of down (romantic bokeh vibe)
-    particlesMesh.position.y = scrollY * 0.005 + Math.sin(elapsedTime * 0.2) * 2;
+    // Snappier Parallax reacting to mouse (Desktop only)
+    if (!isMobile) {
+      swarm1.rotation.y += 0.05 * (targetX - swarm1.rotation.y);
+      swarm1.rotation.x += 0.05 * (targetY - swarm1.rotation.x);
+      swarm2.rotation.y += 0.05 * (targetX - swarm2.rotation.y);
+      swarm2.rotation.x += 0.05 * (targetY - swarm2.rotation.x);
+    }
 
     renderer.render(scene, camera);
   }
@@ -115,8 +134,10 @@ export function initParticles() {
   animate();
 
   window.addEventListener('resize', () => {
+    const isMobileNow = window.innerWidth < 768;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(isMobileNow ? 1 : Math.min(window.devicePixelRatio, 2));
   });
 }

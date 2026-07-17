@@ -1,83 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Beautiful Day</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <!-- Three.js Canvas -->
-    <canvas id="webgl-canvas"></canvas>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>A Beautiful Day</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- Three.js Canvas -->
+  <canvas id="webgl-canvas"></canvas>
 
-    <!-- Content Wrap -->
-    <div class="content-wrapper">
-      
-      <!-- Intro Section -->
-      <section class="section intro-section">
-        <div class="intro-content glass-panel">
-          <h1 class="fade-text title-main">Zoya Irum Ali was born on this beautiful day...</h1>
-          <p class="fade-text subtitle-main">The universe smiled when you arrived.</p>
-          <div class="scroll-indicator">
-            <span class="scroll-text">Scroll to Begin</span>
-            <div class="scroll-line"></div>
+  <!-- Ultra Premium Background Elements -->
+  <div class="luxury-mesh-bg">
+    <div class="mesh-orb orb-1"></div>
+    <div class="mesh-orb orb-2"></div>
+    <div class="mesh-orb orb-3"></div>
+  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Content Wrap -->
+  <div class="content-wrapper">
+
+    <!-- Intro Section -->
+    <section class="section intro-section">
+      <div class="intro-content glass-panel">
+        <div class="gold-ornament top-ornament">✦</div>
+        <h1 class="fade-text title-main">Zoya Irum Ali was born on this beautiful day...</h1>
+        <div class="decorative-line"></div>
+        <p class="fade-text subtitle-main">The universe smiled when you arrived.</p>
+        <div class="scroll-indicator">
+          <span class="scroll-text">Scroll to Begin</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+      <div class="luxury-corner corner-tl"></div>
+      <div class="luxury-corner corner-tr"></div>
+      <div class="luxury-corner corner-bl"></div>
+      <div class="luxury-corner corner-br"></div>
+    </section>
+
+    <!-- Magic Garden & Bouquet Section -->
+    <section class="section magic-garden">
+      <div class="garden-glow"></div>
+      <div class="flowers-container">
+        <div class="flower-row">
+          <span class="floating-flower f1">🌸</span>
+          <span class="floating-flower f2">🌷</span>
+          <span class="floating-flower f3">💐</span>
+          <span class="floating-flower f4">🌺</span>
+          <span class="floating-flower f5">🌷</span>
+          <span class="floating-flower f6">🌸</span>
+        </div>
+        <h2 class="section-title">A garden blooms just for you.</h2>
+        <div class="flower-row">
+          <span class="floating-flower f7">🌺</span>
+          <span class="floating-flower f8">🌸</span>
+          <span class="floating-flower f9">🌷</span>
+          <span class="floating-flower f10">💐</span>
+          <span class="floating-flower f11">🌺</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Cake & Gift Section -->
+    <section class="section celebration-section">
+      <!-- Balloons floating above the cake -->
+      <div class="balloons-canopy">
+        <div class="balloon-wrapper balloon-1">
+          <div class="balloon" data-color="rose">
+            <div class="balloon-body">
+              <div class="balloon-highlight"></div>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
           </div>
         </div>
-      </section>
-
-      <!-- Magic Garden & Bouquet Section -->
-      <section class="section magic-garden">
-        <div class="flowers-container">
-          <!-- Will be populated dynamically or styled via CSS -->
-          <h2 class="section-title">A garden blooms just for you.</h2>
-        </div>
-      </section>
-
-      <!-- The Cake & Gift Section -->
-      <section class="section celebration-section">
-        <div class="celebration-content">
-          <div class="cake-container">
-            <div class="cake-visual">🎂</div>
-          </div>
-          <h2 class="section-title spark-text">Make a wish, Zoya Irum Ali...</h2>
-          <div class="balloons-container">
-            <div class="balloon" title="Click to pop!">🎈</div>
-            <div class="balloon" title="Click to pop!">🎈</div>
-            <div class="balloon" title="Click to pop!">🎈</div>
-            <div class="balloon" title="Click to pop!">🎈</div>
-            <div class="balloon" title="Click to pop!">🎈</div>
+        <div class="balloon-wrapper balloon-2">
+          <div class="balloon" data-color="gold">
+            <div class="balloon-body">
+              <div class="balloon-highlight"></div>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
           </div>
         </div>
-      </section>
-
-      <!-- The Letter Section -->
-      <section class="section letter-section">
-        <div class="gift-box">
-          <div class="gift-lid"></div>
-          <div class="gift-body"></div>
-        </div>
-        <div class="letter-container">
-          <div class="letter glass-panel">
-            <h3>To the incredibly special Zoya Irum Ali,</h3>
-            <p>Today isn't just another day... it's the day you came into this world. Every moment with you is a gift, and today, the world celebrates you.</p>
-            <p>Happy Birthday, Beautiful ❤️</p>
+        <div class="balloon-wrapper balloon-3">
+          <div class="balloon" data-color="blush">
+            <div class="balloon-body">
+              <div class="balloon-highlight"></div>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
           </div>
         </div>
-      </section>
-
-      <!-- Finale Section -->
-      <section class="section finale-section">
-        <div class="finale-content">
-          <h1 class="finale-title">Happy Birthday, Zoya!</h1>
-          <p class="finale-subtitle">May all your dreams come true.</p>
+        <div class="balloon-wrapper balloon-4">
+          <div class="balloon" data-color="lavender">
+            <div class="balloon-body">
+              <div class="balloon-highlight"></div>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
+          </div>
         </div>
-      </section>
+        <div class="balloon-wrapper balloon-5">
+          <div class="balloon" data-color="rose">
+            <div class="balloon-body">
+              <div class="balloon-highlight"></div>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
+          </div>
+        </div>
+      </div>
 
-    </div>
+      <div class="celebration-content">
+        <!-- CSS Cake -->
+        <div class="cake-container">
+          <div class="cake">
+            <!-- Candle flames -->
+            <div class="candles">
+              <div class="candle candle-1">
+                <div class="flame">
+                  <div class="flame-inner"></div>
+                </div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle candle-2">
+                <div class="flame">
+                  <div class="flame-inner"></div>
+                </div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle candle-3">
+                <div class="flame">
+                  <div class="flame-inner"></div>
+                </div>
+                <div class="candle-stick"></div>
+              </div>
+            </div>
+            <!-- Cake layers -->
+            <div class="cake-top">
+              <div class="frosting-drip"></div>
+            </div>
+            <div class="cake-middle">
+              <div class="frosting-drip"></div>
+            </div>
+            <div class="cake-bottom"></div>
+            <div class="cake-plate"></div>
+          </div>
+        </div>
+        <h2 class="section-title spark-text">Make a wish, Zoya Irum Ali...</h2>
+      </div>
+    </section>
 
-    <script type="module" src="./main.js"></script>
-  </body>
+    <!-- The Letter Section -->
+    <section class="section letter-section">
+      <div class="gift-box">
+        <div class="gift-indicator">Click to open! 🎁</div>
+        <div class="gift-ribbon-h"></div>
+        <div class="gift-ribbon-v"></div>
+        <div class="gift-bow">
+          <div class="bow-loop bow-left"></div>
+          <div class="bow-loop bow-right"></div>
+          <div class="bow-center"></div>
+        </div>
+        <div class="gift-lid"></div>
+        <div class="gift-body">
+          <div class="gift-pattern"></div>
+        </div>
+      </div>
+      <div class="letter-container">
+        <div class="letter glass-panel">
+          <div class="gold-ornament small-ornament">✦</div>
+          <h3>To the incredibly special Zoya Irum Ali,</h3>
+          <p>Today isn't just another day... it's the day you came into this world. Every moment with you is a gift, and today, the world celebrates you.</p>
+          <p class="letter-signature">Happy Birthday, Beautiful ❤️</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Finale Section -->
+    <section class="section finale-section">
+      <div class="finale-glow"></div>
+      <div class="finale-content">
+        <h1 class="finale-title">Happy Birthday, Zoya!</h1>
+        <div class="decorative-line gold-line"></div>
+        <p class="finale-subtitle">May all your dreams come true.</p>
+        <div class="finale-sparkles">
+          <span>✨</span><span>🌟</span><span>✨</span><span>💫</span><span>✨</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Confetti container for balloon pops -->
+  <div class="confetti-container" id="confetti-container"></div>
+
+  <script type="module" src="./main.js"></script>
+</body>
 </html>
